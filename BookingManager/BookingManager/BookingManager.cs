@@ -38,7 +38,7 @@ namespace BookingManager
 
             try
             {
-                using (StreamReader reader = new StreamReader("bookings.txt"))
+                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Desktop).ToString() + "\\booking.txt"))
                 {
                     while ((currentLine = reader.ReadLine()) != null)
                     {
