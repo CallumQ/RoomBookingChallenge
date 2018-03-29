@@ -1,18 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BookingManager
 {
     class BookingManager
     {
 
-        private List<Booking> bookingList = new List<Booking>();
+        public List<Booking> bookingList = new List<Booking>();
         static void Main(string[] args)
         {
-            //started dev @ 12:10
-            
 
+            BookingManager bookingManager = new BookingManager();
+            string currentLine;
+            using (StreamReader reader = new StreamReader(@"C:\Users\QuigleyCallumR\helloworld1.txt"))
+            {
+                while ((currentLine = reader.ReadLine()) != null)
+                {
+                    string[] rawDates = currentLine.Split(" , ");
 
+                    bookingManager.bookingList.Add(new Booking(DateTime.Parse(rawDates[0]), DateTime.Parse(rawDates[1])));
+
+                }
+            }
+            foreach (Booking booking in bookingManager.bookingList) {
+                Console.WriteLine(booking.ToString());
+            }
+
+            Console.ReadKey();
 
         }
     }
@@ -36,6 +51,11 @@ namespace BookingManager
                 throw new Exception("Start time must be before end time");
 
             }
+        }
+
+        public override string ToString()
+        {
+            return "Start Time : " + startTime + " End Time : " + endTime;
         }
     }
 }
