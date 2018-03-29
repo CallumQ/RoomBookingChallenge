@@ -1,12 +1,17 @@
 ﻿using System;
-
+using NUnit.Framework;
 namespace BookingManagerTest
 {
+
+    [TestFixture]
     class BookingDOTest
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
+
+        [SetUp]
+        protected void SetUp() {
+
         }
+
+     
     }
 }

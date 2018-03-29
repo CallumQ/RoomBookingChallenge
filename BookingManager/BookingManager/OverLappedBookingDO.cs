@@ -14,6 +14,7 @@
             this.firstDate = firstDate;
             this.secondDate = secondDate;
         }
+
         public override string ToString()
         {
             return "Booking : "+ firstDate.ToString() + " overlaps with : " + secondDate.ToString();

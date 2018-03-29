@@ -21,7 +21,7 @@ namespace BookingManager
             bookingManager.bookingList = bookingManager.GetBookings();
 
             //Get the conflicted bookings and then log them to the console 
-            bookingManager.DisplayConflictedItems(bookingManager.GetConflictedBookings());
+            bookingManager.DisplayConflictedItems(bookingManager.GetConflictedBookings(bookingManager.bookingList));
 
             Console.ReadKey();
 
@@ -65,13 +65,13 @@ namespace BookingManager
         /// takes the current booking list and checks for scheduling conflicts
         /// </summary>
         /// <returns>A list of conflicted bookings</returns>
-        public List<OverLappedBookingDO> GetConflictedBookings() {
+        public List<OverLappedBookingDO> GetConflictedBookings(List<BookingDO> bookings) {
 
             List<OverLappedBookingDO> conflictedBookings = new List<OverLappedBookingDO>();
 
-            foreach (BookingDO booking in bookingList)
+            foreach (BookingDO booking in bookings)
             {
-                foreach (BookingDO comparedBooking in bookingList)
+                foreach (BookingDO comparedBooking in bookings)
                 {
 
                     if ((booking.startTime < comparedBooking.endTime) && (comparedBooking.startTime < booking.endTime) && (!booking.Equals(comparedBooking)))
@@ -84,6 +84,7 @@ namespace BookingManager
 
             return conflictedBookings;
         }
+
         /// <summary>
         /// Displays the overlapped / conflicted bookings
         /// </summary>
