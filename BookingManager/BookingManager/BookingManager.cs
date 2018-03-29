@@ -23,9 +23,18 @@ namespace BookingManager
 
                 }
             }
+
             foreach (Booking booking in bookingManager.bookingList) {
-                Console.WriteLine(booking.ToString());
+                foreach (Booking comparedBooking in bookingManager.bookingList) {
+                    
+                    if ((booking.startTime < comparedBooking.endTime) && (comparedBooking.startTime < booking.endTime) && (!booking.Equals(comparedBooking))) {
+                        Console.WriteLine("booking overlap");
+                    }
+
+                }
             }
+
+            
 
             Console.ReadKey();
 
@@ -35,8 +44,8 @@ namespace BookingManager
 
     class Booking {
 
-        private DateTime startTime;
-        private DateTime endTime;
+        public DateTime startTime { get; set; }
+        public  DateTime endTime { get; set; }
 
         public Booking(DateTime startTime, DateTime endTime)
         {
